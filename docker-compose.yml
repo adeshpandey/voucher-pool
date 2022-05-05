@@ -1,12 +1,6 @@
 version: "3.9"
    
 services:
-  sonarqube:
-    image: sonarqube
-    environment:
-      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
-    ports:
-      - 9000:9000
   db:
     image: postgres
     volumes:
@@ -15,11 +9,6 @@ services:
       - POSTGRES_DB=voucher-pool
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  sonarqube-analysis:
-    image: sonarsource/sonarqube-scan
-    environment:
-      - SONAR_HOST_URL=http://sonarqube:9000
-      - SONAR_TOKEN=b4d6ca44e4f86e8bf813a71725ebd9a9c148dd21
   api:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -33,6 +22,7 @@ services:
       - DB_PASSWORD=postgres
       - DB_HOST=db
       - DB_PORT=5432
+      - SECRET_KEY=veYKYBSKd4Syns1BB3lSYvEdei6WS7ywDnQeXuf0hrGqQnOKY8gAxAjJsjXziIF084
     restart: unless-stopped
     depends_on:
       - db

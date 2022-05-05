@@ -1,3 +1,4 @@
 data/
 *.sqlite3
 *.pyc
+k8s/

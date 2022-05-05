@@ -7,7 +7,10 @@ from datetime import datetime
 from .filters import EmailFilterSet
 
 from .models import Customer, SpecialOffer, VoucherCode
-from .serializers import CustomerSerializer, RedeemSerializer, SpecialOfferSerializer, VoucherCodeSerializer, VoucherCodeWriteSerializer
+from .serializers import CustomerSerializer, \
+    RedeemSerializer, SpecialOfferSerializer, \
+    VoucherCodeSerializer, VoucherCodeWriteSerializer
+
 
 class CustomerViewSet(viewsets.ModelViewSet):
     '''
@@ -23,6 +26,7 @@ class SpecialOfferViewSet(viewsets.ModelViewSet):
     '''
     queryset = SpecialOffer.objects.all()
     serializer_class = SpecialOfferSerializer
+
 
 class VoucherCodeViewSet(viewsets.ModelViewSet):
     '''
@@ -44,20 +48,27 @@ class RedeemApiView(generics.CreateAPIView):
 
     def create(self, request):
 
-        if(self.get_serializer(data=request.data).is_valid(raise_exception=True)):
+        if(self.get_serializer(data=request.data)
+           .is_valid(raise_exception=True)):
             try:
 
-                instance = VoucherCode.objects.filter(customer__email=request.data.get(
-                    'email'), code=request.data.get('code')).get()
+                instance = VoucherCode.objects.filter(
+                    customer__email=request.data.get(
+                        'email'), code=request.data.get('code')).get()
                 if(instance.is_used):
                     return Response({"detail": "already redeemed"}, 400)
-                    
+
                 serializer = VoucherCodeWriteSerializer(
-                    instance, data={'is_used': True, 'used_at': datetime.now() }, partial=True)
-                
+                    instance,
+                    data={'is_used': True, 'used_at': datetime.now()},
+                    partial=True)
+
                 if serializer.is_valid():
                     serializer.save()
-                    return Response({"message": "voucher redeemed successfully", "discount": instance.special_offer.discount}, 204)
+                    return Response({
+                        "message": "voucher redeemed successfully",
+                        "discount": instance.special_offer.discount
+                    }, 204)
                 else:
                     return Response({"detail": "invalid request"}, 400)
             except VoucherCode.DoesNotExist:

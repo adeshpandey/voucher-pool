@@ -1,5 +1,7 @@
 from django.db import models
-from django.core.validators import MinLengthValidator, MaxValueValidator, MinValueValidator
+from django.core.validators import MinLengthValidator, \
+    MaxValueValidator, MinValueValidator
+
 
 class Customer(models.Model):
     '''

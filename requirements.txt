@@ -15,3 +15,4 @@ six==1.16.0
 sqlparse==0.4.2
 toml==0.10.2
 zipp==3.8.0
+psycopg2==2.9.3

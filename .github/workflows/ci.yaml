@@ -18,6 +18,8 @@ on:
 # three job definition
 jobs:
   health-check-job: # health check job for testing and code formatting check
+    env:
+      SECRET_KEY: nQF0XVvWwVf2Aru6Tf42rtlBHMsSK9OCpn8OnOsLytnWZWQIF65mtRgBL1TEq5uUZs 
     runs-on: ubuntu-latest # os for running the job
     services:
       db: # we need a postgres docker image to be booted a side car service to run the tests that needs a db

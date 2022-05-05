@@ -142,17 +142,19 @@ class RedeemVoucherTestCase(TestCase):
         voucher_code = VoucherCode.objects.get(code=res.data.get('code'))
         self.assertEqual(voucher_code.is_used, True)
 
+
 class VouchersByEmailTestCase(TestCase):
     '''
     VoucherByEmail test case consists 
     the testcase scenario to verify if 
     its giving the results for the provided email only
     '''
+
     def test_only_vouchers_for_email(self):
 
         customer = Customer.objects.create(
             name="adesh", email="adesh@yopmail.com")
-            
+
         customer1 = Customer.objects.create(
             name="adesh1", email="adesh1@yopmail.com")
 
@@ -169,8 +171,9 @@ class VouchersByEmailTestCase(TestCase):
             expiry=datetime.now()))
         self.assertTrue(res.status_code == 201)
 
-        res = self.client.get('/vouchers/', data={'email': 'adesh@yopmail.com'})
+        res = self.client.get(
+            '/vouchers/', data={'email': 'adesh@yopmail.com'})
         self.assertTrue(res.status_code == 200)
-        other = list(filter(None,[v.get('email') for v in res.data.get(
+        other = list(filter(None, [v.get('email') for v in res.data.get(
             'results') if v.get('email') != 'adesh@yopmail.com']))
-        self.assertEqual(other,[])
+        self.assertEqual(other, [])

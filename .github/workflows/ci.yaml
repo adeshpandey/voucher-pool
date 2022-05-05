@@ -51,9 +51,9 @@ jobs:
       - name: Check Syntax # check code formatting
         run: pycodestyle --exclude='*migrations*,settings.py' --statistics .
       - name: Run Migrations # run migrations to create table in side car db container
-        run: python voucherpoolapi/manage.py migrate
+        run: python manage.py migrate
       - name: Run Test # running tests
-        run: python voucherpoolapi/manage.py test
+        run: python manage.py test
 
   package-job: # package job for building and publishing docker images
     runs-on: ubuntu-latest

@@ -16,14 +16,23 @@
 
 ## Endpoints
 
-'''
+```
 {
-    "customers": "http://localhost:8000/customers/",
-    "offers": "http://localhost:8000/offers/",
-    "vouchers": "http://localhost:8000/vouchers/"
-    "redeem": "http://localhost:8000/redeem"
+
+    "customers": "https://vouchers-pool.herokuapp.com/customers/",
+    
+    "offers": "https://vouchers-pool.herokuapp.com/offers/",
+    
+    "vouchers": "https://vouchers-pool.herokuapp.com/vouchers/"
+    
+    "redeem": "https://vouchers-pool.herokuapp.com/redeem"
+    
+    "admin-backend": "https://vouchers-pool.herokuapp.com/admin"
+    
 }
-'''
+```
+### Admin Credentials
+    admin/admin
 
 ## TODO
 1. Improve the views/serializers

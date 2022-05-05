@@ -145,8 +145,8 @@ class RedeemVoucherTestCase(TestCase):
 
 class VouchersByEmailTestCase(TestCase):
     '''
-    VoucherByEmail test case consists 
-    the testcase scenario to verify if 
+    VoucherByEmail test case consists
+    the testcase scenario to verify if
     its giving the results for the provided email only
     '''
 

@@ -24,11 +24,15 @@ class VoucherCodeSerializer(serializers.ModelSerializer):
     ``Serializer`` for ``VoucherCode`` ..
     """
     special_offer_name = serializers.ReadOnlyField(source="special_offer.name")
+    customer_email = serializers.ReadOnlyField(source="customer.email")
 
     class Meta:
         model = VoucherCode
         fields = ('code', 'expiry', 'is_used', 'used_at',
-                  'special_offer_name', 'customer', 'special_offer',)
+                  'special_offer_name',
+                  'customer',
+                  'special_offer',
+                  'customer_email',)
         read_only_fields = ('code', 'is_used', 'used_at', 'special_offer_name')
         extra_kwargs = {'customer': {'write_only': True},
                         'special_offer': {'write_only': True}}

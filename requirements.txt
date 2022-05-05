@@ -1,0 +1,12 @@
+asgiref==3.5.1
+Django==4.0.4
+django-filter==21.1
+djangorestframework==3.13.1
+ff3==1.0.1
+importlib-metadata==4.11.3
+Markdown==3.3.6
+pycryptodome==3.14.1
+pytz==2022.1
+sqlparse==0.4.2
+zipp==3.8.0
+psycopg2==2.9.3
